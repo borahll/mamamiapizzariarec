@@ -1,6 +1,12 @@
 import sys
 
 
+"""
+The following code is to find out if the given x and y coordinate exists in the given list
+(This function will be used in the algorithm for the path finding)
+"""
+
+
 def doesexist(existlist, originx, originy):
     for element in existlist:
         if str(originx) + str(originy) == element:
@@ -8,11 +14,22 @@ def doesexist(existlist, originx, originy):
     return False
 
 
+"""
+The following code is to check if the given x and y coordinate is valid
+"""
+
+
 def isvalid(matrixlenght, x1, y):  # check if the provided x and y are valid in the matrix
     if 0 <= x1 < matrixlenght and 0 <= y < matrixlenght:
         return True
     else:
         return False
+
+
+"""
+The following code is to find the maximum element in the matrix
+this number will be the result of the input
+"""
 
 
 def findmax(amatrix):  # function to return the maximum number in a matrix
@@ -24,9 +41,21 @@ def findmax(amatrix):  # function to return the maximum number in a matrix
     return max1
 
 
+"""
+The following portion of the code is for debugging purposes 
+you can see the matrix(s) content
+"""
+
+
 def printmatrix(amatrix):
     for row in amatrix:
         print(" ".join(str(element) for element in row))
+
+
+"""
+The following code is to recursively go through the file contents
+and also increment the provided matrix
+"""
 
 
 def rec(currentline, matrix2):
@@ -39,9 +68,21 @@ def rec(currentline, matrix2):
     visited = []
     visited.clear()
     matrix1 = increment(matrix2, originx, originy, serveradius, visited)
-    printmatrix(matrix1)
     following_line = sys.stdin.readline()
     rec(following_line, matrix1)
+
+
+"""
+The following code is the main algorithm of the question.
+It works as follows:
+    1. If the provided x and y coordinate exists in the list (this list is the visited coordinates in the matrix, stored 
+    in a specific manner, eg: x:1 y:2 list item: "12") or the serve radius is smaller than 0 or the given provided x and
+    y coordinates are not valid the functions returns
+    2. Else the current x and y coordinate of the matrix gets incremented by one and the current location will be 
+    appended to the list of visited locations
+    3. From the current location the function will recursively try to travel at the 4 different neighbors 
+    4. At last the function will return the final matrix
+"""
 
 
 def increment(matrixin, originx, originy, serveradius, visited):
@@ -64,4 +105,4 @@ if __name__ == "__main__":
     matrix = [[0 for j in range(int(matrixlen))] for i in range(int(matrixlen))]
     secondline = sys.stdin.readline()
     rec(secondline, matrix)
-    print(f"The maximum is {findmax(matrix)}")
+    print(f"{findmax(matrix)}")
