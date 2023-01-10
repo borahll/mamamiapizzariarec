@@ -1,0 +1,13 @@
+1. Write down your brief thoughts on how you approached this problem?
+
+    When I first saw the problem I thought that I could write the solution via recursion. I also used other
+techniques to make the algorithm more efficient. I got inspired from Dijkstra's algorithm in a sense. I have a list in
+which I keep the visited coordinates. This list will be cleared every line of the input (in other words, the
+list will be cleared for every pizzeria). Also there is a function to check the bounds.
+
+3. What is the complexity of your solution? Can it be improved?
+
+    The time complexity for the program is O(n*m), n representing the average serve radius and m representing the
+number of pizzerias. To make the program more efficient, we can reduce th time and space complexity. You can use
+backtracking and iteration for time complexity. You can use a set or a 2D boolean array same size as the matrix
+instead of 'visited' list which keeps the visited points as strings to reduce the space complexity.
