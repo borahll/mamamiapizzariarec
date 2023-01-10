@@ -87,13 +87,17 @@ It works as follows:
 
 def increment(matrixin, originx, originy, serveradius, visited):
     if doesexist(visited, originx, originy) or serveradius <= 0 or not isvalid(matrixlen, originx, originy):
-        return
+        return matrix
     matrixin[originx][originy] += 1
     visited.append(str(originx) + str(originy))
-    increment(matrixin, originx + 1, originy, serveradius - 1, visited)
-    increment(matrixin, originx - 1, originy, serveradius - 1, visited)
-    increment(matrixin, originx, originy + 1, serveradius - 1, visited)
-    increment(matrixin, originx, originy - 1, serveradius - 1, visited)
+    if isvalid(matrixlen, originx + 1, originy):
+        increment(matrixin, originx + 1, originy, serveradius - 1, visited)
+    if isvalid(matrixlen, originx - 1, originy):
+        increment(matrixin, originx - 1, originy, serveradius - 1, visited)
+    if isvalid(matrixlen, originx, originy + 1):
+        increment(matrixin, originx, originy + 1, serveradius - 1, visited)
+    if isvalid(matrixlen, originx, originy - 1):
+        increment(matrixin, originx, originy - 1, serveradius - 1, visited)
     return matrix
 
 
